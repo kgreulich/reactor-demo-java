@@ -1,0 +1,9 @@
+http PUT :8080/v1/pet \
+    id:=1 \
+    name=Rosie \
+    items:='{"description": "Krallenschneiden", "value": "17.50", "date": "2023-01-01"}'
+
+    http PUT :8080/v1/pet \
+        id:=2 \
+        name=Wilma \
+        items[]='{"description": "Erstuntersuchung", "value": 45.50, "date": "2023-01-01"}'
