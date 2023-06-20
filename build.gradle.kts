@@ -20,6 +20,7 @@ repositories {
 
 dependencies {
     implementation("org.springframework.boot:spring-boot-starter-webflux")
+    implementation("org.springframework.boot:spring-boot-starter-data-mongodb")
     implementation("org.springframework.boot:spring-boot-starter-data-mongodb-reactive")
     implementation("com.fasterxml.jackson.datatype:jackson-datatype-jsr310")
     compileOnly("org.projectlombok:lombok")

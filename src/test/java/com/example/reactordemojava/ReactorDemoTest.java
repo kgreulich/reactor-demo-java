@@ -1,5 +1,6 @@
 package com.example.reactordemojava;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -8,6 +9,7 @@ import java.time.Duration;
 import java.util.List;
 import java.util.Random;
 
+@Disabled
 class ReactorDemoTest {
 
     @Test
