@@ -1,6 +1,5 @@
 package com.example.reactordemojava;
 
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -9,13 +8,39 @@ import java.time.Duration;
 import java.util.List;
 import java.util.Random;
 
-@Disabled
 class ReactorDemoTest {
 
+    private static final List<Person> PERSONS = List.of(
+            Person.builder().name("John").age(20).build(),
+            Person.builder().name("Kate").age(30).build(),
+            Person.builder().name("Bob").age(15).build()
+    );
+
+    private static Flux<Person> persons = Flux.fromIterable(PERSONS);
+
     @Test
-    void reactiveTest() {
+    void simpleNumber() {
         Flux.fromIterable(List.of(1, 2, 3, 4, 5))
                 .filter(it -> it > 3)
+                .subscribe(System.out::println);
+    }
+
+    @Test
+    void filterPersons() {
+        persons.filter(Person::isAdult)
+                .subscribe(System.out::println);
+    }
+
+    @Test
+    void getPersonsName() {
+        persons.map(Person::getName)
+                .subscribe(System.out::println);
+    }
+
+    @Test
+    void getNameOfAdults() {
+        persons.filter(Person::isAdult)
+                .map(Person::getName)
                 .subscribe(System.out::println);
     }
 
@@ -63,12 +88,12 @@ class ReactorDemoTest {
     @Test
     void blockhoundTest() {
         Mono.delay(Duration.ofSeconds(1))
-            .doOnNext(it -> {
-                try {
-                    Thread.sleep(10);
-                } catch (InterruptedException e) {
-                    throw new RuntimeException(e);
-                }
-            }).block();
+                .doOnNext(it -> {
+                    try {
+                        Thread.sleep(10);
+                    } catch (InterruptedException e) {
+                        throw new RuntimeException(e);
+                    }
+                }).block();
     }
 }
